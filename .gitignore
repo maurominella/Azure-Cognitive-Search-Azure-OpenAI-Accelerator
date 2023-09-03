@@ -8,5 +8,4 @@ common/__pycache__/
 .streamlit/
 *.amltmp 
 *.amltemp
-data/
 my_credentials.env
