@@ -9,4 +9,4 @@ common/__pycache__/
 *.amltmp 
 *.amltemp
 data/
-credentials.env
+my_credentials.env
