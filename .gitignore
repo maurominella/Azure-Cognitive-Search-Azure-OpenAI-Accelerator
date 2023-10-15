@@ -8,4 +8,4 @@ common/__pycache__/
 .streamlit/
 *.amltmp 
 *.amltemp
-credentials (my).env
+"credentials (my).env"
