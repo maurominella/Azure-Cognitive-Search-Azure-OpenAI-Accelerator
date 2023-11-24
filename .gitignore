@@ -8,7 +8,6 @@ common/__pycache__/
 .streamlit/
 *.amltmp 
 *.amltemp
-data/
 credentials_my.env
 .azure/
 .vscode/
