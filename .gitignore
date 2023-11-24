@@ -9,7 +9,7 @@ common/__pycache__/
 *.amltmp 
 *.amltemp
 data/
-credentials.env
+credentials_my.env
 .azure/
 .vscode/
 infra/target/
