@@ -1,0 +1,4 @@
+name: openaivbd_20231215
+dependencies:
+  - python=3.10
+  - pip
