@@ -14705,7 +14705,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Define model</span>
-<span class="n">MODEL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;COMPLETION3516_DEPLOYMENT&quot;</span><span class="p">]</span>
+<span class="n">MODEL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;GPT35_16K_DEPLOYMENT&quot;</span><span class="p">]</span> <span class="c1"># check the other possible values in &lt;model_tokens_limit()&gt; of common/utils.py</span>
 <span class="n">COMPLETION_TOKENS</span> <span class="o">=</span> <span class="mi">500</span>
 <span class="c1"># Create an OpenAI instance</span>
 <span class="n">llm</span> <span class="o">=</span> <span class="n">AzureChatOpenAI</span><span class="p">(</span><span class="n">deployment_name</span><span class="o">=</span><span class="n">MODEL</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="n">COMPLETION_TOKENS</span><span class="p">)</span>

@@ -246,15 +246,28 @@ def num_tokens_from_string(string: str) -> int:
 # Returning the toekn limit based on model selection
 def model_tokens_limit(model: str) -> int:
     """Returns the number of tokens limits in a text model."""
-    if model == "gpt-35-turbo":
-        token_limit = 4096
+    if model == "gpt35turbo-0613-4k":
+        token_limit = 4000
+    elif model == "gpt35turbo-1106-16k":
+        token_limit = 16384
+    elif model == "gpt4-0613-8k":
+        token_limit = 8192
+    elif model == "gpt4-0613-32k":
+        token_limit = 32768
+    elif model == "gpt4-1106-128k":
+        token_limit = 128000
+    elif model == "gpt4-vision-128k":
+        token_limit = 128000
+    elif model == "gpt-35-turbo":
+        token_limit = 4000
     elif model == "gpt-4":
         token_limit = 8192
     elif model == "gpt-35-turbo-16k":
-        token_limit = 16384
+        token_limit = 16000
     elif model == "gpt-4-32k":
         token_limit = 32768
     else:
+        print(f"WARNING: MODEL {model} UNKNOWN, I'M UNABLE TO CALCULATE THE TOKEN LIMIT in utils.py/model_tokens_limit")
         token_limit = 4096
     return token_limit
 

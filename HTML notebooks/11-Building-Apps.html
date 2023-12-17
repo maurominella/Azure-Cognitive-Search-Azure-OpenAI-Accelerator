@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>035-Quering-AOpenAI (advanced)</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>11-Building-Apps</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14573,298 +14573,244 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
     </script>
     <!-- End of mathjax configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Collect constants</span>
-
-<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
-<span class="n">load_dotenv</span><span class="p">(</span><span class="s2">&quot;credentials_my.env&quot;</span><span class="p">)</span>
-
-<span class="c1"># Text-based Indexes that we are going to query (from Notebook 01 and 02)</span>
-<span class="n">index</span>   <span class="o">=</span> <span class="s2">&quot;projection-index2&quot;</span>
-
-<span class="c1"># Set the ENV variables that Langchain needs to connect to Azure OpenAI</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_BASE&quot;</span><span class="p">]</span>    <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AZURE_OPENAI_ENDPOINT&quot;</span><span class="p">]</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span>     <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AZURE_OPENAI_API_KEY&quot;</span><span class="p">]</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_VERSION&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AZURE_OPENAI_API_VERSION&quot;</span><span class="p">]</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_TYPE&quot;</span><span class="p">]</span>    <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_TYPE&quot;</span><span class="p">]</span>
-<span class="n">MODEL</span>                            <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;COMPLETION432_DEPLOYMENT&quot;</span><span class="p">]</span>
-<span class="n">COMPLETION_TOKENS</span>                <span class="o">=</span> <span class="mi">1000</span>
-
-<span class="n">top_search_vector_k</span>              <span class="o">=</span> <span class="mi">5</span>
-
-<span class="c1"># the question to ask - enable just one</span>
-<span class="c1"># QUESTION = &quot;Tell me briefly what are the advantages of defining compositionality using MDL.&quot;</span>
-<span class="c1"># QUESTION = &quot;What is a meaning function?&quot;</span>
-<span class="n">QUESTION</span> <span class="o">=</span> <span class="s2">&quot;Why is von Neumann is considered as one of fathers of modern computers?&quot;</span>
-</pre></div>
-
-     </div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Building-the-Backend-and-Frontend-Applications">Building the Backend and Frontend Applications<a class="anchor-link" href="#Building-the-Backend-and-Frontend-Applications">&#182;</a></h1>
 </div>
 </div>
 </div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Azure AI Search query</span>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>In the previous notebook, we assembled all the functions and code required to create a robust Agent/Bot. Depending on the user's question, this Agent/Bot searches for answers in the available sources and tools.</p>
+<p>However, the question arises: <strong>"How can we integrate this code into a Bot application capable of supporting multiple channel deployments?"</strong> Our ideal scenario involves building the bot once and deploying it across various channels such as MS Teams, Web Chat, Slack, Alexa, Outlook, WhatsApp, Line, Facebook, and more.</p>
+<p>To achieve this, we need a service that not only aids in building the bot as an API but also facilitates the exposure of this API to multiple channels. This service is known as <u>Azure Bot Framework</u>.</p>
+<p>In this notebook, you will learn how to deploy the code you have developed so far as a Bot API using the Bot Framework API and Service.</p>
 
-<span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">json</span>
-
-<span class="c1"># Setup the Payloads header</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span><span class="s1">&#39;api-key&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_SEARCH_KEY&#39;</span><span class="p">]}</span>
-<span class="n">params</span>  <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;api-version&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_SEARCH_API_VERSION_NEW&#39;</span><span class="p">]}</span> <span class="c1"># NEW VERSION!!!</span>
-
-<span class="c1"># search query payload</span>
-<span class="n">search_payload</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;speller&quot;</span><span class="p">:</span> <span class="s2">&quot;lexicon&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;queryLanguage&quot;</span><span class="p">:</span> <span class="s2">&quot;en-us&quot;</span><span class="p">,</span>
-
-  <span class="s2">&quot;top&quot;</span><span class="p">:</span> <span class="n">top_search_vector_k</span><span class="p">,</span>
-  <span class="s2">&quot;select&quot;</span><span class="p">:</span> <span class="s2">&quot;id, name, title, location, chunk&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;vectorQueries&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s2">&quot;kind&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="n">top_search_vector_k</span><span class="p">,</span>
-      <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="s2">&quot;chunkVector&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">QUESTION</span>
-    <span class="p">}</span>
-  <span class="p">]</span>
-<span class="p">}</span>
-
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_SEARCH_ENDPOINT&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;/indexes/&quot;</span> <span class="o">+</span> <span class="n">index</span> <span class="o">+</span> <span class="s2">&quot;/docs/search&quot;</span><span class="p">,</span>
-                     <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">search_payload</span><span class="p">),</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
-</pre></div>
-
-     </div>
 </div>
 </div>
 </div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</pre></div>
-
-     </div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="What-is-the-Azure-Bot-Framework-and-Bot-Service?">What is the Azure Bot Framework and Bot Service?<a class="anchor-link" href="#What-is-the-Azure-Bot-Framework-and-Bot-Service?">&#182;</a></h2>
 </div>
 </div>
 </div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Format Azure AI Search results as an ordered dictionary</span>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Microsoft Bot Framework and Azure Bot Service are a collection of libraries, tools, and services that let you build, test, deploy, and manage intelligent bots.</p>
+<p>Bots are often implemented as a web application, hosted in Azure and using APIs to send and receive messages.</p>
+<p>Azure Bot Service and the Bot Framework include:</p>
+<ul>
+<li>Bot Framework SDKs for developing bots in C#, JavaScript, Python, or Java.</li>
+<li>CLI tools for help with end-to-end bot development.</li>
+<li>Bot Connector Service, which relays messages and events between bots and channels.</li>
+<li>Azure resources for bot management and configuration.</li>
+</ul>
 
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
-
-<span class="n">ordered_results</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
-
-<span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;value&#39;</span><span class="p">]:</span>
-    <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;@search.score&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.25</span><span class="p">:</span><span class="c1"># Show answers that are at least 25% of the max possible score=1</span>
-        <span class="n">ordered_results</span><span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]]</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">],</span>
-            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span>
-            <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">],</span>
-            <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="n">index</span><span class="p">,</span>
-            <span class="s2">&quot;chunk&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;chunk&#39;</span><span class="p">],</span>
-            <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;@search.score&#39;</span><span class="p">]</span>
-        <span class="p">}</span>
-</pre></div>
-
-     </div>
 </div>
 </div>
 </div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># From the ordered dictionary, build the &quot;Documents&quot; array, needed by langchain &quot;qa_with_sources&quot; chain</span>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>So, in order to build our application we would use the <strong>Bot Framework Python SDK to build the Web API</strong>, and the <strong>Bot Service to connect our API to mutiple channels</strong>.</p>
 
-<span class="kn">from</span> <span class="nn">langchain.docstore.document</span> <span class="kn">import</span> <span class="n">Document</span>
-
-<span class="n">top_docs</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">ordered_results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="n">location</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;BLOB_SAS_TOKEN&#39;</span><span class="p">]</span> <span class="c1"># to create &quot;citations&quot;</span>
-    <span class="n">top_docs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Document</span><span class="p">(</span><span class="n">page_content</span><span class="o">=</span><span class="n">value</span><span class="p">[</span><span class="s2">&quot;chunk&quot;</span><span class="p">],</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="n">location</span><span class="p">}))</span>
-</pre></div>
-
-     </div>
 </div>
 </div>
 </div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Prepare the Open AI deployment</span>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Architecture">Architecture<a class="anchor-link" href="#Architecture">&#182;</a></h2><p>The image below shows:
+1) An Azure Web App hostoing the Bot API
+2) Azure Bot Service providing the connection between the Bot API, Channels and Application Insights</p>
 
-<span class="kn">from</span> <span class="nn">langchain.chat_models</span> <span class="kn">import</span> <span class="n">AzureChatOpenAI</span>
-
-<span class="n">llm</span> <span class="o">=</span> <span class="n">AzureChatOpenAI</span><span class="p">(</span><span class="n">deployment_name</span><span class="o">=</span><span class="n">MODEL</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="n">COMPLETION_TOKENS</span><span class="p">)</span>
-</pre></div>
-
-     </div>
 </div>
 </div>
 </div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Extract the specific answer from the Documents array, using Open AI through Langchain</span>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><img src="./images/Bot-Framework.png" alt="Botframework"></p>
 
-<span class="kn">from</span> <span class="nn">langchain.chains.qa_with_sources</span> <span class="kn">import</span> <span class="n">load_qa_with_sources_chain</span>
-
-<span class="c1"># Choose either &quot;stuff&quot; or &quot;map_reduce&quot;, depending on how long the text is. Leave just one uncommented:</span>
-<span class="n">chain_type</span> <span class="o">=</span> <span class="s2">&quot;stuff&quot;</span> <span class="c1"># the LLM is able to manage the promtp + request + response in a single call</span>
-<span class="c1"># chain_type = &quot;map_reduce&quot; # the LLM needs to split the promtp + request in multiple calls</span>
-
-<span class="k">if</span> <span class="n">chain_type</span> <span class="o">==</span> <span class="s2">&quot;stuff&quot;</span><span class="p">:</span>
-    <span class="n">chain</span> <span class="o">=</span> <span class="n">load_qa_with_sources_chain</span><span class="p">(</span><span class="n">llm</span><span class="p">,</span> <span class="n">chain_type</span><span class="o">=</span><span class="n">chain_type</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">chain_type</span> <span class="o">==</span> <span class="s2">&quot;map_reduce&quot;</span><span class="p">:</span>
-    <span class="n">chain</span> <span class="o">=</span> <span class="n">load_qa_with_sources_chain</span><span class="p">(</span><span class="n">llm</span><span class="p">,</span> <span class="n">chain_type</span><span class="o">=</span><span class="n">chain_type</span><span class="p">,</span> <span class="n">return_intermediate_steps</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    
-<span class="n">response</span> <span class="o">=</span> <span class="n">chain</span><span class="p">({</span><span class="s2">&quot;input_documents&quot;</span><span class="p">:</span> <span class="n">top_docs</span><span class="p">,</span> <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">QUESTION</span><span class="p">,</span> <span class="s2">&quot;language&quot;</span><span class="p">:</span> <span class="s2">&quot;English&quot;</span><span class="p">})</span>
-</pre></div>
-
-     </div>
 </div>
 </div>
 </div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Print the final result, including the citation(s)</span>
-
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">Markdown</span>
-
-<span class="k">if</span> <span class="n">chain_type</span> <span class="o">==</span> <span class="s2">&quot;map_reduce&quot;</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;intermediate_steps&#39;</span><span class="p">]:</span>
-        <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&lt;b&gt;Chunk Summary:&lt;/b&gt; &quot;</span> <span class="o">+</span> <span class="n">step</span><span class="p">))</span>
-
-<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;br/&gt;&lt;br/&gt;&lt;b&gt;FINAL ANSWER with --</span><span class="si">{</span><span class="n">chain_type</span><span class="si">}</span><span class="s2">-- chain type:&lt;/b&gt;&quot;</span><span class="p">))</span>
-<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;output_text&#39;</span><span class="p">]))</span>
-</pre></div>
-
-     </div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Backend---Azure-Web-App---Bot-API">Backend - Azure Web App - Bot API<a class="anchor-link" href="#Backend---Azure-Web-App---Bot-API">&#182;</a></h1>
 </div>
 </div>
 </div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Azure AI Search query</span>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>All the functions and prompts used in the prior notebook to create our brain Agent are located in <code>utils.py</code> and <code>prompts.py</code> respectively.
+So, what needs to be done is, basically, to do the same we did in the prior notebook but within the Bot Framework Python SDK classes.</p>
+<p>Within the <code>apps/backend/</code> folder, you will find three files: <code>app.py</code>, <code>bot.py</code> and <code>config.py</code>.</p>
+<ul>
+<li><code>app.py</code>: is the entrance main point to the application.</li>
+<li><code>bot.py</code>: is where our OpenAI-related code resides </li>
+<li><code>config.py</code>: declares the PORT the API will listen from and the App Service Principal var names</li>
+</ul>
+<p>We would only need to deal with <code>bot.py</code>, here is where all the logic code related to your Azure OpenAI application lives.</p>
+<p>in <code>apps/backend/README.md</code> you will find all the instructions on how to:
+1) Deploy the Azure web services: Azure Web App and Azure Bot Service
+2) Zip the code and uploaded to the Azure Web App
+3) Test your Bot API using the Bot Service in the Azure portal</p>
+<p>GO AHEAD NOW AND FOLLOW THE INSTRUCTIONS in <code>apps/backend/README.md</code></p>
 
-<span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">json</span>
-
-<span class="c1"># Setup the Payloads header</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span><span class="s1">&#39;api-key&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_OPENAI_API_KEY&#39;</span><span class="p">]}</span>
-<span class="n">params</span>  <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;api-version&#39;</span><span class="p">:</span> <span class="s1">&#39;2023-12-01-preview&#39;</span><span class="p">}</span>
-
-<span class="c1"># search query payload</span>
-<span class="n">search_payload</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">QUESTION</span>
-        <span class="p">}</span>
-    <span class="p">],</span>
-    <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">&quot;top_p&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>    
-    <span class="s2">&quot;max_tokens&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
-    <span class="s2">&quot;dataSources&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>            
-            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;AzureCognitiveSearch&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>                
-                <span class="s2">&quot;endpoint&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_SEARCH_ENDPOINT&#39;</span><span class="p">],</span>
-                <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_SEARCH_KEY&#39;</span><span class="p">],</span>
-                <span class="s2">&quot;indexName&quot;</span><span class="p">:</span> <span class="n">index</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">}</span>
-
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_OPENAI_ENDPOINT&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">openai/deployments/</span><span class="si">{</span><span class="n">MODEL</span><span class="si">}</span><span class="s2">/extensions/chat/completions&quot;</span><span class="p">,</span>
-    <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">search_payload</span><span class="p">),</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span>
-<span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;choices&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;content&#39;</span><span class="p">])</span>
-</pre></div>
-
-     </div>
 </div>
 </div>
 </div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</pre></div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Frontend---Azure-Web-App---Streamlit">Frontend - Azure Web App - Streamlit<a class="anchor-link" href="#Frontend---Azure-Web-App---Streamlit">&#182;</a></h1>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Once you have the Backend Bot API app running and succesfully tested using the Bot Service Azure portal , we can proceed now to build a sample UI.</p>
+<p>In <code>apps/frontend/</code> folder you will find the files necesary to build a simple Streamlit application that will have:</p>
+<p>1) <u>A Search Interface</u>: Using <code>utils.py</code> and <code>prompts.py</code> and streamlit functions
+2) <u>A WebChat Interface</u>: Using the Bot Service Web Chat javascript library we can render the WebChat Channel inside Streamlit as an html component</p>
+<p>Notice that in (1) the logic code is running in the Frontend Web App, however in (2) the logic code is running in the Backend Bot API and the Frontend is just using the WebChat channel from the Bot Service.</p>
+<p>GO AHEAD NOW AND FOLLOW THE INSTRUCTIONS in <code>apps/frontend/README.md</code></p>
 
-     </div>
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Build-and-deploy-with-GitHub-Actions">Build and deploy with GitHub Actions<a class="anchor-link" href="#Build-and-deploy-with-GitHub-Actions">&#182;</a></h1>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>if you don't want to build and deploy all the components manually, a GitHub automated CI pipeline is provided in <code>.github/workflows/main_gptsmartsearch_apps.yml</code>. Some notes about the CI pipeline design:</p>
+<ul>
+<li>It uses a "branch per environment approach". The deploy environment name is computed at 'runtime' based on a branch/env-name mapping logic in the "set environment for branch" step (line 29). The current implemented logic maps everything to a dev like environment. Therefore on each git push on the <code>main branch</code> the pipeline is triggered trying to deploy to an environment called <code>Development</code>. For more info about GitHub environments and how to set specific env variables and secrets read <a href="https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment">here</a>.</li>
+<li>GitHub environment variables and secrets are used to configure development environment specific configuration. They need to be configured manually in github repository settings:<ul>
+<li><code>secrets.AZUREAPPSERVICE_X_PUBLISHPROFILE</code> is used to store the azure app service publish profile configuration securely.</li>
+<li><code>vars.AZURE_WEBAPP_X_NAME</code> is used to store the azure web app resource name generated during infra arm deployment.</li>
+</ul>
+</li>
+<li>Python dependencies installation is disabled during build phase as azure web apps are currently configured with SCM_DO_BUILD_DURING_DEPLOYMENT. There is an env properties that can be used to activate dependencies resolution during build job. Just set <code>DO_BUILD_DURING_DEPLOYMENT : false</code>.</li>
+</ul>
+<p>To properly configure automated build and deploy for both backend and frontend components follow below steps:</p>
+<ol>
+<li>Go to your forked repository in GitHub and create an <a href="(https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment">environment</a>) called 'Development' (yes this exact name; don't change it). If you want to change the environment name, add new branches and environments  or change the current branch/env mapping you can do that, but make sure to change the pipeline code accordingly in <code>.github/workflows/main_gptsmartsearch_apps.yml</code> (starting line 29)</li>
+<li>Create 'Development' environment <a href="https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository">secrets</a> for both frontend and backend azure web apps <a href="(https://learn.microsoft.com/en-us/visualstudio/azure/how-to-get-publish-profile-from-azure-app-service?view=vs-2022">publish profiles</a>). You'll need to copy paste the xml content from the .PublishSettings file into the secret value:<ul>
+<li>Create a secret with name <code>AZUREAPPSERVICE_BACKEND_PUBLISHPROFILE</code> and set the Value field to publish profile of the azure web app you created using 'Deploy to Azure' button in <code>apps/backend/README.md</code></li>
+<li>Create a secret with name <code>AZUREAPPSERVICE_FRONTEND_PUBLISHPROFILE</code> and set the Value field to publish profile of the azure web app you created using 'Deploy to Azure' button in <code>apps/frontend/README.md</code><ol>
+<li>Create 'Development' environment <a href="https://docs.github.com/en/actions/learn-github-actions/variables#creating-configuration-variables-for-an-environment">variables</a> for both frontend and backend azure web app resource names:</li>
+</ol>
+<ul>
+<li>Create a variable with name <code>AZURE_WEBAPP_BACKEND_NAME</code> and set the Value field to the azure web app resource name you created using 'Deploy to Azure' button in <code>apps/backend/README.md</code></li>
+<li>Create a variable with name <code>AZURE_WEBAPP_FRONTEND_NAME</code> and set the Value field to the azure web app resource name you created using 'Deploy to Azure' button in <code>apps/frontend/README.md</code></li>
+</ul>
+<ol>
+<li>For each commit you push check the status of the triggered pipeline in the GitHub Actions tab, you should see a pipeline has been triggered for the specific commit. If everything is ok you should see green checkmark on both build and deploy jobs in the pipeline detail like below:</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<p><img src="./images/github-actions-pipeline-success.png" alt="pipeline success"></p>
 
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Reference">Reference<a class="anchor-link" href="#Reference">&#182;</a></h1>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/bot-service/bot-service-overview?view=azure-bot-service-4.0">https://learn.microsoft.com/en-us/azure/bot-service/bot-service-overview?view=azure-bot-service-4.0</a></li>
+<li><a href="https://github.com/microsoft/botbuilder-python/tree/main">https://github.com/microsoft/botbuilder-python/tree/main</a></li>
+<li><a href="https://github.com/microsoft/BotFramework-WebChat/tree/master">https://github.com/microsoft/BotFramework-WebChat/tree/master</a></li>
+</ul>
+
+</div>
+</div>
+</div>
 </div>
 </body>
 

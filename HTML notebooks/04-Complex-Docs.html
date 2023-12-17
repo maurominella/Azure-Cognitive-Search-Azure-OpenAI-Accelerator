@@ -14648,7 +14648,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <span class="n">BASE_CONTAINER_URL</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://</span><span class="si">{</span><span class="n">storage_account</span><span class="si">}</span><span class="s2">.blob.core.windows.net/</span><span class="si">{</span><span class="n">BLOB_CONTAINER_NAME</span><span class="si">}</span><span class="s2">/&quot;</span>
 <span class="n">LOCAL_FOLDER</span> <span class="o">=</span> <span class="s2">&quot;./data/books/&quot;</span>
 
-<span class="n">MODEL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;COMPLETION3516_DEPLOYMENT&quot;</span><span class="p">]</span> <span class="c1"># options: gpt-35-turbo, gpt-35-turbo-16k, gpt-4, gpt-4-32k</span>
+<span class="n">MODEL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;GPT35_16K_DEPLOYMENT&quot;</span><span class="p">]</span> <span class="c1"># check the other possible values in &lt;model_tokens_limit()&gt; of common/utils.py</span>
 <span class="n">book_index_name</span> <span class="o">=</span> <span class="s2">&quot;cogsrch-index-books-vector&quot;</span>
 
 <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">LOCAL_FOLDER</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
