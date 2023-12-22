@@ -437,7 +437,7 @@ def update_vector_indexes(ordered_search_results: dict, embedder: AzureOpenAIEmb
                         ]
                     }
 
-                    r = requests.post(os.environ['AZURE_SEARCH_ENDPOINT'] + "/indexes/" + value["index"]+"-vector" + "/docs/index",
+                    r = requests.post(os.environ['AZURE_SEARCH_ENDPOINT'] + "/indexes/" + value["index"] + "-vector" + "/docs/search.index",
                                          data=json.dumps(upload_payload), headers=headers, params=params)
                     if r.status_code != 200:
                         print(r.status_code)
@@ -461,7 +461,7 @@ def update_vector_indexes(ordered_search_results: dict, embedder: AzureOpenAIEmb
             ]
         }
 
-        r = requests.post(os.environ['AZURE_SEARCH_ENDPOINT'] + "/indexes/" + value["index"]+ "/docs/index",
+        r = requests.post(os.environ['AZURE_SEARCH_ENDPOINT'] + "/indexes/" + value["index"] + "-vector" + "/docs/search.index",
                          data=json.dumps(upload_payload), headers=headers, params=params)
 
 
