@@ -246,26 +246,12 @@ def num_tokens_from_string(string: str) -> int:
 # Returning the toekn limit based on model selection
 def model_tokens_limit(model: str) -> int:
     """Returns the number of tokens limits in a text model."""
-    if model == "gpt35turbo-0613-4k":
-        token_limit = 4000
-    elif model == "gpt35turbo-1106-16k":
-        token_limit = 16384
-    elif model == "gpt4-0613-8k":
-        token_limit = 8192
-    elif model == "gpt4-0613-32k":
-        token_limit = 32768
-    elif model == "gpt4-1106-128k":
-        token_limit = 128000
-    elif model == "gpt4-vision-128k":
-        token_limit = 128000
-    elif model == "gpt-35-turbo":
-        token_limit = 4000
-    elif model == "gpt-4":
-        token_limit = 8192
-    elif model == "gpt-35-turbo-16k":
+    if model.find("-")>0 and model[-1]=='k':
+        token_limit = int(model.split("-")[-1].replace("k","000"))
+    elif model.find("16"):
         token_limit = 16000
-    elif model == "gpt-4-32k":
-        token_limit = 32768
+    elif model.find("32"):
+        token_limit = 32000
     else:
         print(f"WARNING: MODEL {model} UNKNOWN, I'M UNABLE TO CALCULATE THE TOKEN LIMIT in utils.py/model_tokens_limit")
         token_limit = 4096
@@ -367,20 +353,19 @@ def get_search_results(query: str, indexes: list,
             "queryType": "semantic",
             "semanticConfiguration": "my-semantic-config",
             "count": "true",
-            "speller": "lexicon",
-            "queryLanguage": "en-us",
+            # "speller": "lexicon",
+            # "queryLanguage": "en-us",
             "captions": "extractive",
             "answers": "extractive",
             "top": k
         }
         if vector_search:
-            search_payload["vectors"]= [{"value": query_vector, "fields": "chunkVector","k": k}]
+            search_payload["vectorQueries"]= [{"kind":"vector", "exhaustive":"true", "vector": query_vector, "fields": "chunkVector","k": k}]
             search_payload["select"]= "id, title, chunk, name, location"
         else:
             search_payload["select"]= "id, title, chunks, name, location, vectorized"
         
-
-        resp = requests.post(os.environ['AZURE_SEARCH_ENDPOINT'] + "/indexes/" + index + "/docs/search",
+        resp = requests.post(os.environ['AZURE_SEARCH_ENDPOINT'] + "/indexes/" + index + "/docs/search.post.search",
                          data=json.dumps(search_payload), headers=headers, params=params)
 
         search_results = resp.json()

@@ -14604,7 +14604,7 @@ The reference documentation can be found at <a href="https://learn.microsoft.com
 
 <span class="c1"># Name of the container in your Blob Storage Datasource ( in credentials.env)</span>
 <span class="n">BLOB_CONTAINER_NAME</span> <span class="o">=</span> <span class="s2">&quot;cord19&quot;</span>
-<span class="n">BLOB_FOLDER</span>         <span class="o">=</span> <span class="s2">&quot;metadata&quot;</span> <span class="c1"># leave it blank for the original external path</span>
+<span class="n">BLOB_FOLDER</span>         <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="c1"># when empty, it means the original external path</span>
 </pre></div>
 
      </div>
@@ -14622,9 +14622,9 @@ The reference documentation can be found at <a href="https://learn.microsoft.com
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Define the names for the data source, index and indexer</span>
 <span class="n">datasource_name</span> <span class="o">=</span> <span class="s2">&quot;cogsrch-datasource-csv&quot;</span>
-<span class="n">skillset_name</span> <span class="o">=</span> <span class="s2">&quot;cogsrch-skillset-csv&quot;</span>
-<span class="n">index_name</span> <span class="o">=</span> <span class="s2">&quot;cogsrch-index-csv&quot;</span>
-<span class="n">indexer_name</span> <span class="o">=</span> <span class="s2">&quot;cogsrch-indexer-csv&quot;</span>
+<span class="n">skillset_name</span>   <span class="o">=</span> <span class="s2">&quot;cogsrch-skillset-csv&quot;</span>
+<span class="n">index_name</span>      <span class="o">=</span> <span class="s2">&quot;cogsrch-index-csv&quot;</span>
+<span class="n">indexer_name</span>    <span class="o">=</span> <span class="s2">&quot;cogsrch-indexer-csv&quot;</span>
 </pre></div>
 
      </div>
@@ -14667,47 +14667,6 @@ The reference documentation can be found at <a href="https://learn.microsoft.com
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">BLOB_FOLDER</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&#39;metadata&#39;</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create a data source</span>
@@ -14788,13 +14747,17 @@ Let's see what the file looks like:</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Identify the csv file, so we can inspect it using pandas</span>
 
 <span class="n">storage_account</span>  <span class="o">=</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;BLOB_CONNECTION_STRING&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">)][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">remote_file_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://</span><span class="si">{</span><span class="n">storage_account</span><span class="si">}</span><span class="s2">.blob.core.windows.net/</span><span class="si">{</span><span class="n">BLOB_CONTAINER_NAME</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">BLOB_FOLDER</span><span class="si">}</span><span class="s2">/metadata.csv</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;BLOB_SAS_TOKEN&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">BLOB_FOLDER</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+    <span class="n">remote_file_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://</span><span class="si">{</span><span class="n">storage_account</span><span class="si">}</span><span class="s2">.blob.core.windows.net/</span><span class="si">{</span><span class="n">BLOB_CONTAINER_NAME</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">BLOB_FOLDER</span><span class="si">}</span><span class="s2">/metadata.csv</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;BLOB_SAS_TOKEN&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">remote_file_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://</span><span class="si">{</span><span class="n">storage_account</span><span class="si">}</span><span class="s2">.blob.core.windows.net/</span><span class="si">{</span><span class="n">BLOB_CONTAINER_NAME</span><span class="si">}</span><span class="s2">/metadata.csv</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;BLOB_SAS_TOKEN&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+    
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;remote_file_path: </span><span class="si">{</span><span class="n">remote_file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 
@@ -14817,7 +14780,7 @@ Let's see what the file looks like:</p>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>remote_file_path: https://blobstoragey24bi577jszf6.blob.core.windows.net/cord19/metadata/metadata.csv?sv=2023-01-03&amp;ss=btqf&amp;srt=sco&amp;st=2023-12-15T13%3A10%3A02Z&amp;se=2030-12-16T11%3A00%3A00Z&amp;sp=rl&amp;sig=csDdBE4LlNa0VmLDMUbbY6pcly9wKr5f8XKFpKRfq64%3D
+<pre>remote_file_path: https://blobstoragey24bi577jszf6.blob.core.windows.net/cord19/metadata.csv?sv=2023-01-03&amp;ss=btqf&amp;srt=sco&amp;st=2023-12-15T13%3A10%3A02Z&amp;se=2030-12-16T11%3A00%3A00Z&amp;sp=rl&amp;sig=csDdBE4LlNa0VmLDMUbbY6pcly9wKr5f8XKFpKRfq64%3D
 </pre>
 </div>
 </div>
@@ -14831,7 +14794,7 @@ Let's see what the file looks like:</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -14884,70 +14847,70 @@ metadata.shape: (103, 6)
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
 
 
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <style type="text/css">
 </style>
-<table id="T_f109c">
+<table id="T_89513">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_f109c_level0_col0" class="col_heading level0 col0" >cord_uid</th>
-      <th id="T_f109c_level0_col1" class="col_heading level0 col1" >source_x</th>
-      <th id="T_f109c_level0_col2" class="col_heading level0 col2" >title</th>
-      <th id="T_f109c_level0_col3" class="col_heading level0 col3" >abstract</th>
-      <th id="T_f109c_level0_col4" class="col_heading level0 col4" >authors</th>
-      <th id="T_f109c_level0_col5" class="col_heading level0 col5" >url</th>
+      <th id="T_89513_level0_col0" class="col_heading level0 col0" >cord_uid</th>
+      <th id="T_89513_level0_col1" class="col_heading level0 col1" >source_x</th>
+      <th id="T_89513_level0_col2" class="col_heading level0 col2" >title</th>
+      <th id="T_89513_level0_col3" class="col_heading level0 col3" >abstract</th>
+      <th id="T_89513_level0_col4" class="col_heading level0 col4" >authors</th>
+      <th id="T_89513_level0_col5" class="col_heading level0 col5" >url</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_f109c_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_f109c_row0_col0" class="data row0 col0" >ug7v899j</td>
-      <td id="T_f109c_row0_col1" class="data row0 col1" >PMC</td>
-      <td id="T_f109c_row0_col2" class="data row0 col2" >Clinical features of culture-p...</td>
-      <td id="T_f109c_row0_col3" class="data row0 col3" >OBJECTIVE: This retrospective ...</td>
-      <td id="T_f109c_row0_col4" class="data row0 col4" >Madani, Tariq A; Al-Ghamdi, Ai...</td>
-      <td id="T_f109c_row0_col5" class="data row0 col5" ><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC35282/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC35282/</a></td>
+      <th id="T_89513_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_89513_row0_col0" class="data row0 col0" >ug7v899j</td>
+      <td id="T_89513_row0_col1" class="data row0 col1" >PMC</td>
+      <td id="T_89513_row0_col2" class="data row0 col2" >Clinical features of culture-p...</td>
+      <td id="T_89513_row0_col3" class="data row0 col3" >OBJECTIVE: This retrospective ...</td>
+      <td id="T_89513_row0_col4" class="data row0 col4" >Madani, Tariq A; Al-Ghamdi, Ai...</td>
+      <td id="T_89513_row0_col5" class="data row0 col5" ><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC35282/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC35282/</a></td>
     </tr>
     <tr>
-      <th id="T_f109c_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_f109c_row1_col0" class="data row1 col0" >02tnwd4m</td>
-      <td id="T_f109c_row1_col1" class="data row1 col1" >PMC</td>
-      <td id="T_f109c_row1_col2" class="data row1 col2" >Nitric oxide: a pro-inflammato...</td>
-      <td id="T_f109c_row1_col3" class="data row1 col3" >Inflammatory diseases of the r...</td>
-      <td id="T_f109c_row1_col4" class="data row1 col4" >Vliet, Albert van der; Eiseric...</td>
-      <td id="T_f109c_row1_col5" class="data row1 col5" ><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC59543/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC59543/</a></td>
+      <th id="T_89513_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_89513_row1_col0" class="data row1 col0" >02tnwd4m</td>
+      <td id="T_89513_row1_col1" class="data row1 col1" >PMC</td>
+      <td id="T_89513_row1_col2" class="data row1 col2" >Nitric oxide: a pro-inflammato...</td>
+      <td id="T_89513_row1_col3" class="data row1 col3" >Inflammatory diseases of the r...</td>
+      <td id="T_89513_row1_col4" class="data row1 col4" >Vliet, Albert van der; Eiseric...</td>
+      <td id="T_89513_row1_col5" class="data row1 col5" ><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC59543/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC59543/</a></td>
     </tr>
     <tr>
-      <th id="T_f109c_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_f109c_row2_col0" class="data row2 col0" >ejv2xln0</td>
-      <td id="T_f109c_row2_col1" class="data row2 col1" >PMC</td>
-      <td id="T_f109c_row2_col2" class="data row2 col2" >Surfactant protein-D and pulmo...</td>
-      <td id="T_f109c_row2_col3" class="data row2 col3" >Surfactant protein-D (SP-D) pa...</td>
-      <td id="T_f109c_row2_col4" class="data row2 col4" >Crouch, Erika C...</td>
-      <td id="T_f109c_row2_col5" class="data row2 col5" ><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC59549/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC59549/</a></td>
+      <th id="T_89513_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_89513_row2_col0" class="data row2 col0" >ejv2xln0</td>
+      <td id="T_89513_row2_col1" class="data row2 col1" >PMC</td>
+      <td id="T_89513_row2_col2" class="data row2 col2" >Surfactant protein-D and pulmo...</td>
+      <td id="T_89513_row2_col3" class="data row2 col3" >Surfactant protein-D (SP-D) pa...</td>
+      <td id="T_89513_row2_col4" class="data row2 col4" >Crouch, Erika C...</td>
+      <td id="T_89513_row2_col5" class="data row2 col5" ><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC59549/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC59549/</a></td>
     </tr>
     <tr>
-      <th id="T_f109c_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_f109c_row3_col0" class="data row3 col0" >2b73a28n</td>
-      <td id="T_f109c_row3_col1" class="data row3 col1" >PMC</td>
-      <td id="T_f109c_row3_col2" class="data row3 col2" >Role of endothelin-1 in lung d...</td>
-      <td id="T_f109c_row3_col3" class="data row3 col3" >Endothelin-1 (ET-1) is a 21 am...</td>
-      <td id="T_f109c_row3_col4" class="data row3 col4" >Fagan, Karen A; McMurtry, Ivan...</td>
-      <td id="T_f109c_row3_col5" class="data row3 col5" ><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC59574/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC59574/</a></td>
+      <th id="T_89513_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_89513_row3_col0" class="data row3 col0" >2b73a28n</td>
+      <td id="T_89513_row3_col1" class="data row3 col1" >PMC</td>
+      <td id="T_89513_row3_col2" class="data row3 col2" >Role of endothelin-1 in lung d...</td>
+      <td id="T_89513_row3_col3" class="data row3 col3" >Endothelin-1 (ET-1) is a 21 am...</td>
+      <td id="T_89513_row3_col4" class="data row3 col4" >Fagan, Karen A; McMurtry, Ivan...</td>
+      <td id="T_89513_row3_col5" class="data row3 col5" ><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC59574/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC59574/</a></td>
     </tr>
     <tr>
-      <th id="T_f109c_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_f109c_row4_col0" class="data row4 col0" >9785vg6d</td>
-      <td id="T_f109c_row4_col1" class="data row4 col1" >PMC</td>
-      <td id="T_f109c_row4_col2" class="data row4 col2" >Gene expression in epithelial ...</td>
-      <td id="T_f109c_row4_col3" class="data row4 col3" >Respiratory syncytial virus (R...</td>
-      <td id="T_f109c_row4_col4" class="data row4 col4" >Domachowske, Joseph B; Bonvill...</td>
-      <td id="T_f109c_row4_col5" class="data row4 col5" ><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC59580/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC59580/</a></td>
+      <th id="T_89513_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_89513_row4_col0" class="data row4 col0" >9785vg6d</td>
+      <td id="T_89513_row4_col1" class="data row4 col1" >PMC</td>
+      <td id="T_89513_row4_col2" class="data row4 col2" >Gene expression in epithelial ...</td>
+      <td id="T_89513_row4_col3" class="data row4 col3" >Respiratory syncytial virus (R...</td>
+      <td id="T_89513_row4_col4" class="data row4 col4" >Domachowske, Joseph B; Bonvill...</td>
+      <td id="T_89513_row4_col5" class="data row4 col5" ><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC59580/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC59580/</a></td>
     </tr>
   </tbody>
 </table>
@@ -14977,7 +14940,7 @@ metadata.shape: (103, 6)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create a skillset</span>
@@ -15066,7 +15029,7 @@ True
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">index_payload</span> <span class="o">=</span> <span class="p">{</span>
@@ -15156,7 +15119,7 @@ True
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">indexer_payload</span> <span class="o">=</span> <span class="p">{</span>
@@ -15239,7 +15202,7 @@ True
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Optionally, get indexer status to confirm that it&#39;s running</span>
@@ -15276,9 +15239,7 @@ True
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>200
-Status: success
-Items Processed: 103
-True
+Wait a few seconds until the process starts and run this cell again.
 </pre>
 </div>
 </div>
@@ -15315,7 +15276,7 @@ True
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">index_payload</span> <span class="o">=</span> <span class="p">{</span>
@@ -15324,18 +15285,24 @@ True
         <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Edm.String&quot;</span><span class="p">,</span> <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="s2">&quot;filterable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span> <span class="p">},</span>
         <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;title&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Edm.String&quot;</span><span class="p">,</span><span class="s2">&quot;searchable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span><span class="s2">&quot;retrievable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">},</span>
         <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;chunk&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Edm.String&quot;</span><span class="p">,</span><span class="s2">&quot;searchable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span><span class="s2">&quot;retrievable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">},</span>
-        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;chunkVector&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Collection(Edm.Single)&quot;</span><span class="p">,</span><span class="s2">&quot;searchable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span><span class="s2">&quot;retrievable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span><span class="s2">&quot;dimensions&quot;</span><span class="p">:</span> <span class="mi">1536</span><span class="p">,</span><span class="s2">&quot;vectorSearchConfiguration&quot;</span><span class="p">:</span> <span class="s2">&quot;vectorConfig&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;chunkVector&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Collection(Edm.Single)&quot;</span><span class="p">,</span><span class="s2">&quot;searchable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span><span class="s2">&quot;retrievable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span><span class="s2">&quot;dimensions&quot;</span><span class="p">:</span> <span class="mi">1536</span><span class="p">,</span><span class="s2">&quot;vectorSearchProfile&quot;</span><span class="p">:</span> <span class="s2">&quot;my_vectorsearch_profile&quot;</span><span class="p">},</span>
         <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Edm.String&quot;</span><span class="p">,</span> <span class="s2">&quot;searchable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="s2">&quot;retrievable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="s2">&quot;sortable&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="s2">&quot;filterable&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="s2">&quot;facetable&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">},</span>
         <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;location&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Edm.String&quot;</span><span class="p">,</span> <span class="s2">&quot;searchable&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="s2">&quot;retrievable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="s2">&quot;sortable&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="s2">&quot;filterable&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="s2">&quot;facetable&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">},</span>
 
     <span class="p">],</span>
     <span class="s2">&quot;vectorSearch&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;algorithmConfigurations&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;algorithms&quot;</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span>
-                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;vectorConfig&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;vector_algorithm_hnsw&quot;</span><span class="p">,</span>
                 <span class="s2">&quot;kind&quot;</span><span class="p">:</span> <span class="s2">&quot;hnsw&quot;</span>
             <span class="p">}</span>
-        <span class="p">]</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;profiles&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my_vectorsearch_profile&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;algorithm&quot;</span><span class="p">:</span> <span class="s2">&quot;vector_algorithm_hnsw&quot;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>        
     <span class="p">},</span>
     <span class="s2">&quot;semantic&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;configurations&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -15386,6 +15353,47 @@ True
 True
 </pre>
 </div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&#39;{&#34;@odata.context&#34;:&#34;https://cog-search-y24bi577jszf6.search.windows.net/$metadata#indexes/$entity&#34;,&#34;@odata.etag&#34;:&#34;\\&#34;0x8DC06E25EFBF320\\&#34;&#34;,&#34;name&#34;:&#34;cogsrch-index-csv-vector&#34;,&#34;defaultScoringProfile&#34;:null,&#34;fields&#34;:[{&#34;name&#34;:&#34;id&#34;,&#34;type&#34;:&#34;Edm.String&#34;,&#34;searchable&#34;:true,&#34;filterable&#34;:true,&#34;retrievable&#34;:true,&#34;sortable&#34;:true,&#34;facetable&#34;:true,&#34;key&#34;:true,&#34;indexAnalyzer&#34;:null,&#34;searchAnalyzer&#34;:null,&#34;analyzer&#34;:null,&#34;dimensions&#34;:null,&#34;vectorSearchProfile&#34;:null,&#34;synonymMaps&#34;:[]},{&#34;name&#34;:&#34;title&#34;,&#34;type&#34;:&#34;Edm.String&#34;,&#34;searchable&#34;:true,&#34;filterable&#34;:true,&#34;retrievable&#34;:true,&#34;sortable&#34;:true,&#34;facetable&#34;:true,&#34;key&#34;:false,&#34;indexAnalyzer&#34;:null,&#34;searchAnalyzer&#34;:null,&#34;analyzer&#34;:null,&#34;dimensions&#34;:null,&#34;vectorSearchProfile&#34;:null,&#34;synonymMaps&#34;:[]},{&#34;name&#34;:&#34;chunk&#34;,&#34;type&#34;:&#34;Edm.String&#34;,&#34;searchable&#34;:true,&#34;filterable&#34;:true,&#34;retrievable&#34;:true,&#34;sortable&#34;:true,&#34;facetable&#34;:true,&#34;key&#34;:false,&#34;indexAnalyzer&#34;:null,&#34;searchAnalyzer&#34;:null,&#34;analyzer&#34;:null,&#34;dimensions&#34;:null,&#34;vectorSearchProfile&#34;:null,&#34;synonymMaps&#34;:[]},{&#34;name&#34;:&#34;chunkVector&#34;,&#34;type&#34;:&#34;Collection(Edm.Single)&#34;,&#34;searchable&#34;:true,&#34;filterable&#34;:false,&#34;retrievable&#34;:true,&#34;sortable&#34;:false,&#34;facetable&#34;:false,&#34;key&#34;:false,&#34;indexAnalyzer&#34;:null,&#34;searchAnalyzer&#34;:null,&#34;analyzer&#34;:null,&#34;dimensions&#34;:1536,&#34;vectorSearchProfile&#34;:&#34;my_vectorsearch_profile&#34;,&#34;synonymMaps&#34;:[]},{&#34;name&#34;:&#34;name&#34;,&#34;type&#34;:&#34;Edm.String&#34;,&#34;searchable&#34;:true,&#34;filterable&#34;:false,&#34;retrievable&#34;:true,&#34;sortable&#34;:false,&#34;facetable&#34;:false,&#34;key&#34;:false,&#34;indexAnalyzer&#34;:null,&#34;searchAnalyzer&#34;:null,&#34;analyzer&#34;:null,&#34;dimensions&#34;:null,&#34;vectorSearchProfile&#34;:null,&#34;synonymMaps&#34;:[]},{&#34;name&#34;:&#34;location&#34;,&#34;type&#34;:&#34;Edm.String&#34;,&#34;searchable&#34;:false,&#34;filterable&#34;:false,&#34;retrievable&#34;:true,&#34;sortable&#34;:false,&#34;facetable&#34;:false,&#34;key&#34;:false,&#34;indexAnalyzer&#34;:null,&#34;searchAnalyzer&#34;:null,&#34;analyzer&#34;:null,&#34;dimensions&#34;:null,&#34;vectorSearchProfile&#34;:null,&#34;synonymMaps&#34;:[]}],&#34;scoringProfiles&#34;:[],&#34;corsOptions&#34;:null,&#34;suggesters&#34;:[],&#34;analyzers&#34;:[],&#34;tokenizers&#34;:[],&#34;tokenFilters&#34;:[],&#34;charFilters&#34;:[],&#34;encryptionKey&#34;:null,&#34;similarity&#34;:{&#34;@odata.type&#34;:&#34;#Microsoft.Azure.Search.BM25Similarity&#34;,&#34;k1&#34;:null,&#34;b&#34;:null},&#34;vectorSearch&#34;:{&#34;algorithms&#34;:[{&#34;name&#34;:&#34;vector_algorithm_hnsw&#34;,&#34;kind&#34;:&#34;hnsw&#34;,&#34;hnswParameters&#34;:{&#34;metric&#34;:&#34;cosine&#34;,&#34;m&#34;:4,&#34;efConstruction&#34;:400,&#34;efSearch&#34;:500},&#34;exhaustiveKnnParameters&#34;:null}],&#34;profiles&#34;:[{&#34;name&#34;:&#34;my_vectorsearch_profile&#34;,&#34;algorithm&#34;:&#34;vector_algorithm_hnsw&#34;}]},&#34;semantic&#34;:{&#34;defaultConfiguration&#34;:null,&#34;configurations&#34;:[{&#34;name&#34;:&#34;my-semantic-config&#34;,&#34;prioritizedFields&#34;:{&#34;titleField&#34;:{&#34;fieldName&#34;:&#34;title&#34;},&#34;prioritizedContentFields&#34;:[{&#34;fieldName&#34;:&#34;chunk&#34;}],&#34;prioritizedKeywordsFields&#34;:[]}}]}}&#39;</pre>
+</div>
+
 </div>
 
 </div>

@@ -14648,7 +14648,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <span class="n">BASE_CONTAINER_URL</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://</span><span class="si">{</span><span class="n">storage_account</span><span class="si">}</span><span class="s2">.blob.core.windows.net/</span><span class="si">{</span><span class="n">BLOB_CONTAINER_NAME</span><span class="si">}</span><span class="s2">/&quot;</span>
 <span class="n">LOCAL_FOLDER</span> <span class="o">=</span> <span class="s2">&quot;./data/books/&quot;</span>
 
-<span class="n">MODEL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;GPT35_16K_DEPLOYMENT&quot;</span><span class="p">]</span> <span class="c1"># check the other possible values in &lt;model_tokens_limit()&gt; of common/utils.py</span>
+<span class="n">MODEL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;GPT35TURBO16K-0613-16k&quot;</span><span class="p">]</span> <span class="c1"># check the other possible values in &lt;model_tokens_limit()&gt; of common/utils.py</span>
 <span class="n">book_index_name</span> <span class="o">=</span> <span class="s2">&quot;cogsrch-index-books-vector&quot;</span>
 
 <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">LOCAL_FOLDER</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -14860,7 +14860,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre> 20%|██        | 1/5 [00:06&lt;00:27,  6.99s/it]</pre>
+<pre> 20%|██        | 1/5 [00:06&lt;00:25,  6.39s/it]</pre>
 </div>
 </div>
 
@@ -14883,7 +14883,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre> 40%|████      | 2/5 [00:09&lt;00:12,  4.07s/it]</pre>
+<pre> 40%|████      | 2/5 [00:08&lt;00:11,  3.77s/it]</pre>
 </div>
 </div>
 
@@ -14906,7 +14906,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre> 60%|██████    | 3/5 [00:15&lt;00:10,  5.00s/it]</pre>
+<pre> 60%|██████    | 3/5 [00:14&lt;00:09,  4.88s/it]</pre>
 </div>
 </div>
 
@@ -14929,7 +14929,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre> 80%|████████  | 4/5 [00:16&lt;00:03,  3.71s/it]</pre>
+<pre> 80%|████████  | 4/5 [00:16&lt;00:03,  3.61s/it]</pre>
 </div>
 </div>
 
@@ -14952,7 +14952,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>100%|██████████| 5/5 [00:19&lt;00:00,  3.90s/it]</pre>
+<pre>100%|██████████| 5/5 [00:18&lt;00:00,  3.74s/it]</pre>
 </div>
 </div>
 
@@ -15005,7 +15005,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="n">FIRST_EXECUTION</span><span class="p">:</span>
@@ -15053,27 +15053,27 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Extracting Text from Azure_Cognitive_Search_Documentation.pdf ...
 Extracting text using PyPDF
-Parsing took: 39.529478 seconds
+Parsing took: 39.153059 seconds
 Azure_Cognitive_Search_Documentation.pdf contained 1947 pages
 
 Extracting Text from Boundaries_When_to_Say_Yes_How_to_Say_No_to_Take_Control_of_Your_Life.pdf ...
 Extracting text using PyPDF
-Parsing took: 2.217021 seconds
+Parsing took: 2.172158 seconds
 Boundaries_When_to_Say_Yes_How_to_Say_No_to_Take_Control_of_Your_Life.pdf contained 357 pages
 
 Extracting Text from Fundamentals_of_Physics_Textbook.pdf ...
 Extracting text using PyPDF
-Parsing took: 113.902491 seconds
+Parsing took: 113.245331 seconds
 Fundamentals_of_Physics_Textbook.pdf contained 1450 pages
 
 Extracting Text from Made_To_Stick.pdf ...
 Extracting text using PyPDF
-Parsing took: 8.967522 seconds
+Parsing took: 9.043520 seconds
 Made_To_Stick.pdf contained 225 pages
 
 Extracting Text from Pere_Riche_Pere_Pauvre.pdf ...
 Extracting text using PyPDF
-Parsing took: 1.172239 seconds
+Parsing took: 1.125917 seconds
 Pere_Riche_Pere_Pauvre.pdf contained 225 pages
 
 </pre>
@@ -15101,7 +15101,7 @@ Pere_Riche_Pere_Pauvre.pdf contained 225 pages
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="n">FIRST_EXECUTION</span><span class="p">:</span>
@@ -15132,23 +15132,24 @@ Pere_Riche_Pere_Pauvre.pdf contained 225 pages
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Azure_Cognitive_Search_Documentation.pdf 
- chunk text: The demo app is useful for prototyping because you can simulate an end-user
-expe ...
+ chunk text: Categor y                            Featur es
+Relevance Simple scoring  is a ke ...
 
 Boundaries_When_to_Say_Yes_How_to_Say_No_to_Take_Control_of_Your_Life.pdf 
- chunk text: 23
-taking responsibility for others isn’t working. A master of taking
-care of th ...
+ chunk text: 22
+11:50 P.M.
+Lying in bed, Sherrie couldn’t tell which was greater, her lone-
+l ...
 
 Fundamentals_of_Physics_Textbook.pdf 
- chunk text: Atomic clocks are so consistent that, in principle, two cesium clocks would have ...
+ chunk text: xiCONTENTS23Gauss’ Law65923-1ELECTRIC FLUX659What Is Physics659Electric Flux6602 ...
 
 Made_To_Stick.pdf 
- chunk text: inforce the need for compactness and to provide a h int about how to 
-cram more  ...
+ chunk text: appear. So, while our focus will veer away from The Tipping Point&#39;s 
+turf, we wa ...
 
 Pere_Riche_Pere_Pauvre.pdf 
- chunk text: ~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ...
+ chunk text: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~ ...
 
 </pre>
 </div>
@@ -15176,7 +15177,7 @@ Let's try to parse this book again, but this time using Azure Document Intellige
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
@@ -15210,8 +15211,8 @@ Let's try to parse this book again, but this time using Azure Document Intellige
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Extracting text using Azure Document Intelligence
-CPU times: user 13 s, sys: 228 ms, total: 13.3 s
-Wall time: 25.7 s
+CPU times: user 12.6 s, sys: 200 ms, total: 12.8 s
+Wall time: 35.3 s
 </pre>
 </div>
 </div>
@@ -15236,7 +15237,7 @@ Wall time: 25.7 s
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="n">FIRST_EXECUTION</span><span class="p">:</span>
@@ -15266,8 +15267,7 @@ Wall time: 25.7 s
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Pere_Riche_Pere_Pauvre.pdf 
- chunk text: Le sentier que je n&#39;ai pas emprunté
-Deux sentiers s&#39;écartaient l&#39;un de l&#39;autre d ...
+ chunk text: Mon père, qui était sur le point de partir, m&#39;avait entendu. « Les garçons », di ...
 
 </pre>
 </div>
@@ -15306,7 +15306,7 @@ Deux sentiers s&#39;écartaient l&#39;un de l&#39;autre d ...
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="n">FIRST_EXECUTION</span><span class="p">:</span>
@@ -15329,7 +15329,7 @@ Deux sentiers s&#39;écartaient l&#39;un de l&#39;autre d ...
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="n">FIRST_EXECUTION</span><span class="p">:</span>
@@ -15339,19 +15339,25 @@ Deux sentiers s&#39;écartaient l&#39;un de l&#39;autre d ...
             <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Edm.String&quot;</span><span class="p">,</span> <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="s2">&quot;filterable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span> <span class="p">},</span>
             <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;title&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Edm.String&quot;</span><span class="p">,</span><span class="s2">&quot;searchable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span><span class="s2">&quot;retrievable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">},</span>
             <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;chunk&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Edm.String&quot;</span><span class="p">,</span><span class="s2">&quot;searchable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span><span class="s2">&quot;retrievable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">},</span>
-            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;chunkVector&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Collection(Edm.Single)&quot;</span><span class="p">,</span><span class="s2">&quot;searchable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span><span class="s2">&quot;retrievable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span><span class="s2">&quot;dimensions&quot;</span><span class="p">:</span> <span class="mi">1536</span><span class="p">,</span><span class="s2">&quot;vectorSearchConfiguration&quot;</span><span class="p">:</span> <span class="s2">&quot;vectorConfig&quot;</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;chunkVector&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Collection(Edm.Single)&quot;</span><span class="p">,</span><span class="s2">&quot;searchable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span><span class="s2">&quot;retrievable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span><span class="s2">&quot;dimensions&quot;</span><span class="p">:</span> <span class="mi">1536</span><span class="p">,</span><span class="s2">&quot;vectorSearchProfile&quot;</span><span class="p">:</span> <span class="s2">&quot;my_vectorsearch_profile&quot;</span><span class="p">},</span>
             <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Edm.String&quot;</span><span class="p">,</span> <span class="s2">&quot;searchable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="s2">&quot;retrievable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="s2">&quot;sortable&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="s2">&quot;filterable&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="s2">&quot;facetable&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">},</span>
             <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;location&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Edm.String&quot;</span><span class="p">,</span> <span class="s2">&quot;searchable&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="s2">&quot;retrievable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="s2">&quot;sortable&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="s2">&quot;filterable&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="s2">&quot;facetable&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">},</span>
             <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;page_num&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Edm.Int32&quot;</span><span class="p">,</span><span class="s2">&quot;searchable&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span><span class="s2">&quot;retrievable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">},</span>
 
         <span class="p">],</span>
         <span class="s2">&quot;vectorSearch&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;algorithmConfigurations&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;algorithms&quot;</span><span class="p">:</span> <span class="p">[</span>
                 <span class="p">{</span>
-                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;vectorConfig&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;vector_algorithm_hnsw&quot;</span><span class="p">,</span>
                     <span class="s2">&quot;kind&quot;</span><span class="p">:</span> <span class="s2">&quot;hnsw&quot;</span>
                 <span class="p">}</span>
-            <span class="p">]</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;profiles&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my_vectorsearch_profile&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;algorithm&quot;</span><span class="p">:</span> <span class="s2">&quot;vector_algorithm_hnsw&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>        
         <span class="p">},</span>
         <span class="s2">&quot;semantic&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s2">&quot;configurations&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -15401,7 +15407,7 @@ Deux sentiers s&#39;écartaient l&#39;un de l&#39;autre d ...
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>201
+<pre>204
 True
 </pre>
 </div>
@@ -15416,7 +15422,7 @@ True
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Uncomment to debug errors</span>
@@ -15456,7 +15462,7 @@ True
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
@@ -15483,7 +15489,7 @@ True
                     <span class="p">]</span>
                 <span class="p">}</span>
 
-                <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_SEARCH_ENDPOINT&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;/indexes/&quot;</span> <span class="o">+</span> <span class="n">book_index_name</span> <span class="o">+</span> <span class="s2">&quot;/docs/index&quot;</span><span class="p">,</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_SEARCH_ENDPOINT&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;/indexes/&quot;</span> <span class="o">+</span> <span class="n">book_index_name</span> <span class="o">+</span> <span class="s2">&quot;/docs/search.index&quot;</span><span class="p">,</span>
                                      <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">upload_payload</span><span class="p">),</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
                     <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
@@ -15528,7 +15534,7 @@ True
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>100%|██████████| 1947/1947 [06:22&lt;00:00,  5.10it/s]
+<pre>100%|██████████| 1947/1947 [13:32&lt;00:00,  2.40it/s]
 </pre>
 </div>
 </div>
@@ -15552,7 +15558,7 @@ True
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>100%|██████████| 357/357 [01:20&lt;00:00,  4.44it/s]
+<pre>100%|██████████| 357/357 [02:32&lt;00:00,  2.34it/s]
 </pre>
 </div>
 </div>
@@ -15576,7 +15582,7 @@ True
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>100%|██████████| 1450/1450 [13:28&lt;00:00,  1.79it/s]
+<pre>100%|██████████| 1450/1450 [13:44&lt;00:00,  1.76it/s]
 </pre>
 </div>
 </div>
@@ -15600,7 +15606,7 @@ True
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>100%|██████████| 225/225 [01:11&lt;00:00,  3.14it/s]
+<pre>100%|██████████| 225/225 [01:37&lt;00:00,  2.32it/s]
 </pre>
 </div>
 </div>
@@ -15624,7 +15630,7 @@ True
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>100%|██████████| 225/225 [01:07&lt;00:00,  3.33it/s]</pre>
+<pre>100%|██████████| 225/225 [01:36&lt;00:00,  2.34it/s]</pre>
 </div>
 </div>
 
@@ -15635,8 +15641,8 @@ True
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>CPU times: user 4min 20s, sys: 6.47 s, total: 4min 26s
-Wall time: 23min 30s
+<pre>CPU times: user 4min 17s, sys: 6.46 s, total: 4min 24s
+Wall time: 33min 2s
 </pre>
 </div>
 </div>
@@ -15673,7 +15679,7 @@ Wall time: 23min 30s
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># QUESTION = &quot;what normally rich dad do that is different from poor dad?&quot;</span>
@@ -15694,7 +15700,7 @@ Wall time: 23min 30s
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vector_indexes</span> <span class="o">=</span> <span class="p">[</span><span class="n">book_index_name</span><span class="p">]</span>
@@ -15732,7 +15738,7 @@ Wall time: 23min 30s
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">COMPLETION_TOKENS</span> <span class="o">=</span> <span class="mi">1000</span>
@@ -15749,7 +15755,7 @@ Wall time: 23min 30s
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">top_docs</span> <span class="o">=</span> <span class="p">[]</span>
@@ -15793,7 +15799,7 @@ Wall time: 23min 30s
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Calculate number of tokens of our docs</span>
@@ -15842,7 +15848,7 @@ Max Completion Token count: 1000
 Combined docs (context) token count: 3595
 --------
 Requested token count: 6264
-Token limit for gpt-35-turbo-16k : 16384
+Token limit for gpt35turbo-1106-16k : 16384
 Chain Type selected: stuff
 </pre>
 </div>
@@ -15857,7 +15863,7 @@ Chain Type selected: stuff
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[38]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="n">chain_type</span> <span class="o">==</span> <span class="s2">&quot;stuff&quot;</span><span class="p">:</span>
@@ -15880,7 +15886,7 @@ Chain Type selected: stuff
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[39]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
@@ -15907,8 +15913,8 @@ Chain Type selected: stuff
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>CPU times: user 25.3 ms, sys: 4.1 ms, total: 29.4 ms
-Wall time: 9.5 s
+<pre>CPU times: user 16.5 ms, sys: 12 ms, total: 28.5 ms
+Wall time: 1.71 s
 </pre>
 </div>
 </div>
@@ -15922,7 +15928,7 @@ Wall time: 9.5 s
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[41]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;output_text&#39;</span><span class="p">]))</span>
@@ -15948,64 +15954,57 @@ Wall time: 9.5 s
 
 
 <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-OutputArea-output " data-mime-type="text/markdown">
-<p>To push documents with vectors to an index using the Python SDK, you can follow the steps below:</p>
-<ol>
-<li><p>Create a search index using the <code>create_index</code> method of the <code>SearchIndex</code> class. Specify the fields and other options for the index.</p>
-<ul>
-<li>Source: [2]</li>
-</ul>
-</li>
-<li><p>Use the <code>upload_documents</code> method of the <code>SearchClient</code> class to upload the documents to the index. Pass the documents as a list to the <code>documents</code> parameter.</p>
-<ul>
-<li>Source: [5]</li>
-</ul>
-</li>
-</ol>
-<p>Here is an example of how you can push documents with vectors to an index using the Python SDK:</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">azure.core.credentials</span> <span class="kn">import</span> <span class="n">AzureKeyCredential</span>
-<span class="kn">from</span> <span class="nn">azure.search.documents</span> <span class="kn">import</span> <span class="n">SearchClient</span><span class="p">,</span> <span class="n">SearchIndex</span><span class="p">,</span> <span class="n">SearchFieldDataType</span>
+<p>I don't have enough information to answer this question.</p>
 
-<span class="c1"># Set up the search client</span>
-<span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;&lt;your_search_service_endpoint&gt;&quot;</span>
-<span class="n">index_name</span> <span class="o">=</span> <span class="s2">&quot;&lt;your_index_name&gt;&quot;</span>
-<span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;&lt;your_api_key&gt;&quot;</span>
-<span class="n">credential</span> <span class="o">=</span> <span class="n">AzureKeyCredential</span><span class="p">(</span><span class="n">api_key</span><span class="p">)</span>
-<span class="n">search_client</span> <span class="o">=</span> <span class="n">SearchClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="n">index_name</span><span class="p">,</span> <span class="n">credential</span><span class="o">=</span><span class="n">credential</span><span class="p">)</span>
+</div>
 
-<span class="c1"># Define the fields for the index</span>
-<span class="n">fields</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">SearchField</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">SearchFieldDataType</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-    <span class="n">SearchField</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">SearchFieldDataType</span><span class="o">.</span><span class="n">String</span><span class="p">),</span>
-    <span class="n">SearchField</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;vector&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">SearchFieldDataType</span><span class="o">.</span><span class="n">Collection</span><span class="p">(</span><span class="n">SearchFieldDataType</span><span class="o">.</span><span class="n">Double</span><span class="p">))</span>
-<span class="p">]</span>
+</div>
 
-<span class="c1"># Create the search index</span>
-<span class="n">index</span> <span class="o">=</span> <span class="n">SearchIndex</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">index_name</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="n">fields</span><span class="p">)</span>
-<span class="n">search_client</span><span class="o">.</span><span class="n">create_index</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+</div>
 
-<span class="c1"># Upload documents with vectors to the index</span>
-<span class="n">documents</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;@search.action&quot;</span><span class="p">:</span> <span class="s2">&quot;upload&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Document 1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;vector&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;@search.action&quot;</span><span class="p">:</span> <span class="s2">&quot;upload&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Document 2&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;vector&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">]</span>
-    <span class="p">}</span>
-<span class="p">]</span>
+</div>
 
-<span class="n">search_client</span><span class="o">.</span><span class="n">upload_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[40]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">llm</span><span class="o">.</span><span class="n">to_json</span><span class="p">()</span>
 </pre></div>
-<p>Please note that you need to replace <code>&lt;your_search_service_endpoint&gt;</code>, <code>&lt;your_index_name&gt;</code>, and <code>&lt;your_api_key&gt;</code> with your own values.</p>
-<p>References:
-[2]<sup><a href="https://demodatasetsp.blob.core.windows.net/books/Azure_Cognitive_Search_Documentation.pdf?sv=2023-01-03&ss=btqf&srt=sco&st=2023-12-15T13%3A10%3A02Z&se=2030-12-16T11%3A00%3A00Z&sp=rl&sig=csDdBE4LlNa0VmLDMUbbY6pcly9wKr5f8XKFpKRfq64%3D" target="_blank">[2]</a></sup>, [5]<sup><a href="https://demodatasetsp.blob.core.windows.net/books/Azure_Cognitive_Search_Documentation.pdf?sv=2023-01-03&ss=btqf&srt=sco&st=2023-12-15T13%3A10%3A02Z&se=2030-12-16T11%3A00%3A00Z&sp=rl&sig=csDdBE4LlNa0VmLDMUbbY6pcly9wKr5f8XKFpKRfq64%3D" target="_blank">[5]</a></sup></p>
-<p>Let me know if there is anything else I can help you with.</p>
 
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[40]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>{&#39;lc&#39;: 1,
+ &#39;type&#39;: &#39;constructor&#39;,
+ &#39;id&#39;: [&#39;langchain&#39;, &#39;chat_models&#39;, &#39;azure_openai&#39;, &#39;AzureChatOpenAI&#39;],
+ &#39;kwargs&#39;: {&#39;deployment_name&#39;: &#39;gpt35turbo-1106-16k&#39;,
+  &#39;temperature&#39;: 0.5,
+  &#39;max_tokens&#39;: 1000,
+  &#39;openai_api_type&#39;: &#39;azure&#39;,
+  &#39;openai_api_version&#39;: &#39;2023-12-01-preview&#39;,
+  &#39;openai_api_key&#39;: {&#39;lc&#39;: 1, &#39;type&#39;: &#39;secret&#39;, &#39;id&#39;: [&#39;OPENAI_API_KEY&#39;]}}}</pre>
 </div>
 
 </div>
